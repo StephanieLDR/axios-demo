@@ -1,24 +1,32 @@
-const BASE_URL = 'http://api.reactprototypes.com';
-const API_KEY = '?key=testuser1234';
+const BASE_URL ="http://api.reactprototypes.com";
+const API_KEY = "?key=c318demouser";
 
-axios.get(`${BASE_URL}/todos${API_KEY}`).then(resp => {
-    const { todos } = resp.data;
-    const table = $('table tbody');
+                            //translates to http://api.reactprototypes.com/todos?key=c318demouser
+//get list of all todo items
+const response = axios.get(`${BASE_URL}/todos${API_KEY}`).then(getTodoData);
 
-    addToDom(todos, table);
-});
+function getTodoData(response) {
+    console.log("Response: ", response)
+}
 
-const addToDom = (list, container) => {
-    const tableRows = list.map((item, index) => {
+//get single todo item
+//axios.get(`${BASE_URL}/todos/${idToGet}${API_KEY}`)
 
-        const tableData = [
-            $(`<td>${index + 1}</td>`),
-            $(`<td>${item.title}</td>`),
-            item.complete ? $(`<td class="text-success">Yes</td>`) : $(`<td class="text-danger">No</td>`)
-        ];
+// const newItem = {
+//     title: "Stephanie T CLINE LDR\'s new toDo item",
+//     details: "EAT CUPCAKES"
+// };
+//add new todo item
+// axios.post(`${BASE_URL}/todos${API_KEY}`, newItem).then(resp => {
+//     console.log("Add item response: ", resp)
+// });
 
-        return $('<tr>').append(tableData);
-    });
+// const idToDelete="5b2d4560e3e0f45f2ed5ca25";
+//
+//delete todo item
+// axios.delete(`${BASE_URL}/todos/${idToDelete}${API_KEY}`).then(resp => {
+//     console.log("Delete response: ", resp)
+// });
 
-    container.append(tableRows);
-};
+//to toggle completeness of data: change "complete" from false to true...
+//axios.put(`${BASE_URL}/todos/${idToToggle}${API_KEY}`)
